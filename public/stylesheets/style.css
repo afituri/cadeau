@@ -1,0 +1,17 @@
+body {
+  padding: 20px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/*.dropdownmenu {
+	min-width: 260px;
+}*/
+
+.line-right {
+  margin-right: -1px;
+  border-right: 1px solid black;
+}

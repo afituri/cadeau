@@ -1,0 +1,32 @@
+doctype html
+html
+  include inc/header
+  body
+
+    div.container
+      .navbar.navbar-default.navbar(role='navigation')
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href='/') Cadeau.LY
+
+          .navbar-collapse.collapse
+            ul.nav.navbar-nav
+              li.active 
+                a(href='#') Libya 
+                  img(src="/images/libya.png") 
+              li
+                a(href='#') Country List
+            ul.nav.navbar-nav.navbar-right
+              li.active
+                a(href='#') Main
+              li
+                a(href='#') Contact Us
+              li.dropdown(id='menuLogin')
+                a.dropdown-toggle(href='/login', id='navLogin') Login / Register
+      block content  
+  
