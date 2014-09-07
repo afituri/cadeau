@@ -1,6 +1,7 @@
 extends layout
 block content
   div.row-fluid
+    div.col-lg-6.col-lg-offset-3(id="alertBlock")
     div.col-lg-6.col-lg-offset-3(id='loginForm')
       legend Login to Cadeau.LY
       table.table.table-bordered
@@ -16,11 +17,12 @@ block content
               div.panel-heading
                 h4.div.panel-title Login
               div.panel-body
-                div.form-group
-                  input.form-control(name="username", id="username", type="text", placeholder="Username", pattern="^[a-z,A-Z,0-9,_]{6,15}$", data-valid-min="6", title="Enter your username", required)
-                div.form-group
-                  input.form-control(name="password", id="password", type="password", placeholder="Password", title="Enter your password", required)
-                button.btn.btn-default(type="submit") Submit
+                form(role='form', id='formLogin', action='login', method='post')
+                  div.form-group
+                    input.form-control(name="username", id="username", type="text", placeholder="Username", pattern="^[a-z,A-Z,0-9,_]{6,15}$", data-valid-min="6", title="Enter your username", required)
+                  div.form-group
+                    input.form-control(name="password", id="password", type="password", placeholder="Password", title="Enter your password", required)
+                  button.btn.btn-default(type="submit") Submit
         tr
           td(colspan='2') 
               a(href="#",id='showRegister') New user? Sign-up
@@ -41,10 +43,9 @@ block content
                 h4.div.panel-title Register
               div.panel-body
                 form(role='form', id='formRegister')
-                  label Register
                   div.form-group
-                    input.form-control(id='nemail', type='email', placeholder='Email')
-                  button.btn.btn-default(type="submit") Register               
+                    input.form-control(id='remail', type='email', placeholder='Email', required)
+                  button.btn.btn-default.confirmRegister(type='submit', id='registerSubmit',  data-loading-text="Checking Email..." ) Register               
         tr
           td(colspan='2') 
               a(href="#",id='showLogin') Already a user? Login..
@@ -52,28 +53,3 @@ block content
   
   
   include inc/scripts
-
-
-
-
-              //- div.dropdown-menu.dropdownmenu(style='padding:17px;')
-              //-   form(role='form', id='formLogin')
-              //-     label Login
-              //-     div.form-group
-              //-       input.form-control(name="username", id="username", type="text", placeholder="Username", pattern="^[a-z,A-Z,0-9,_]{6,15}$", data-valid-min="6", title="Enter your username", required)
-              //-     div.form-group
-              //-       input.form-control(name="password", id="password", type="password", placeholder="Password", title="Enter your password", required)
-              //-     button.btn.btn-default(type="submit") Submit
-              //-     br
-                //- div.panel.panel-default
-                //-   div.panel-heading
-                //-     h6.div.panel-title
-                //-       a(data-toggle='collapse', href='#formRegister')  
-                //-         small New User? Sign-up..
-                //-   div.panel-collapse.collapse(id='formRegister')
-                //-     div.panel-body
-                //-       form(role='form', id='formRegister')
-                //-         label Register
-                //-         div.form-group
-                //-           input.form-control(id='nemail', type='email', placeholder='Email')
-                //-         button.btn.btn-default(type="submit") Register

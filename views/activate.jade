@@ -1,0 +1,30 @@
+extends layout
+block content
+  div.row-fluid
+    div.col-lg-6.col-lg-offset-3(id="alertBlock")
+    div.col-lg-6.col-lg-offset-3(id='activationForm')
+      legend Activate your account at Cadeau.LY
+      table.table.table-bordered
+        tr
+          td
+            div.panel.panel-info
+              div.panel-heading
+                h4.div.panel-title Please fill this form to activate your account #{email}
+              div.panel-body
+                form(role='form', id='formActivate', method='post')
+                  div.form-group
+                    input.form-control(name="username", id="username", type="text", placeholder="Username", pattern="^[a-z,A-Z,0-9,_]{6,15}$", data-valid-min="6", title="Enter your username", required)
+                  div.form-group
+                    input.form-control(name="password", id="password", type="password", placeholder="Password", title="Enter your password", required)
+                  div.form-group
+                    input.form-control(name="repassword", id="repassword", type="password", placeholder="Confirm Password", title="Confim password", required)
+                    input.form-control(name="email", id="email", type="hidden",value="#{email}")
+                  button.btn.btn-default.confirmActivation(type='submit', id='activateSubmit',  data-loading-text="Activating ..." ) Activate               
+        tr
+          td(colspan='2') 
+              a(href="#",id='showRegister') New user? Sign-up
+   
+
+  
+  
+  include inc/activate
