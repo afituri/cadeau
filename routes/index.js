@@ -4,9 +4,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-	var ip = '41.254.2.115';
-	console.log(req.connection.remoteAddress);
-	console.log(geoip.lookup(ip));
+
+	// var ip = '41.254.2.115';
+	// console.log(req.connection.remoteAddress);
+	// console.log(geoip.lookup(ip));
 
   res.render('index', { title: 'Cadeaue.LY'});
 });

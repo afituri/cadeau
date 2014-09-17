@@ -12,18 +12,6 @@ $(document).ready(function(){
     });
 
   }
-  
-  
-  
-  $('#showRegister').click(function(){
-    $('#loginForm').hide();
-    $('#registerForm').removeClass( "hide");
-  });
-  $('#showLogin').click(function(){
-    removeAlerts();
-    $('#registerForm').addClass( "hide");
-    $('#loginForm').show();
-  });
 
   $('body').on("click", ".confirmRegister", function(){
     var email = $('#remail').val();

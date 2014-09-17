@@ -1,7 +1,7 @@
 
 /************************************************************************/
 var mysql      = require('mysql');
-var connection = mysql.createConnection({
+var pool = mysql.createPool({
   host     : 'localhost',
   user     : 'root',
   password : 'dunstuff',
@@ -13,7 +13,9 @@ var util = require("util");
 /************************************************************************/
 exports.mysqlMgr = {
   connect : function (callback){
-  	callback(connection);
+  	pool.getConnection(function(err, connection) {
+  	  callback(connection);
+  	});
 
   },
   

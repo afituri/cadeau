@@ -21,14 +21,34 @@ a {
   border-right: 1px solid black;
 }
 
+.navbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-left: white;
+  border-bottom: white;
+  border-top: white;
+}
 
-.navbar-default {
-    background-color: #8cbbd3;
-    border-color: #bce8f1;
+
+
+.navbar-header {
+  background-color: white;
+  border-color: white;
+  min-height: 50px;
+  }
+
+
+
+.container>.navbar-header, .container-fluid>.navbar-header, .container>.navbar-collapse, .container-fluid>.navbar-collapse {
+margin-right: -10px;
+margin-left: -15px;
 }
 
 .navbar-default .navbar-nav>li>a {
-color: #FCFBFB;
+  min-height: 50px;
+color: #8c98d3;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {

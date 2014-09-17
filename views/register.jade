@@ -1,0 +1,28 @@
+extends layout
+block content
+  div.row-fluid
+    div.col-lg-6.col-lg-offset-3(id="alertBlock")
+    div.col-lg-6.col-lg-offset-3(id='registerForm')
+      legend Register to Cadeau.LY                  
+      table.table.table-bordered
+        tr
+          td
+            div.panel.panel-warning
+              div.panel-heading
+                h4.div.panel-title Register with Facebook
+              div.panel-body
+                img.img(src="/images/facebook.jpeg")
+          td(width='50%')
+            div.panel.panel-warning
+              div.panel-heading
+                h4.div.panel-title Register
+              div.panel-body
+                form(role='form', id='formRegister')
+                  div.form-group
+                    input.form-control(id='remail', type='email', placeholder='Email', required)
+                  button.btn.btn-default.confirmRegister(type='submit', id='registerSubmit',  data-loading-text="Checking Email..." ) Register               
+        tr
+          td(colspan='2') 
+            a(href="/login",id='showLogin') Already a user? Login..
+
+  include inc/scripts

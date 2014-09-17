@@ -17,7 +17,7 @@ block content
               div.panel-heading
                 h4.div.panel-title Login
               div.panel-body
-                form(role='form', id='formLogin', action='login', method='post')
+                form(role='form', id='formLogin', action='/login', method='post')
                   div.form-group
                     input.form-control(name="username", id="username", type="text", placeholder="Username", pattern="^[a-z,A-Z,0-9,_]{6,15}$", data-valid-min="6", title="Enter your username", required)
                   div.form-group
@@ -25,31 +25,6 @@ block content
                   button.btn.btn-default(type="submit") Submit
         tr
           td(colspan='2') 
-              a(href="#",id='showRegister') New user? Sign-up
-    div.col-lg-6.col-lg-offset-3.hide(id='registerForm')
-      legend Register to Cadeau.LY                  
-      table.table.table-bordered
-        tr
-          td
-            div.panel.panel-warning
-              div.panel-heading
-                h4.div.panel-title Register with Facebook
-              div.panel-body
-                img.img(src="/images/facebook.jpeg")
-                
-          td(width='50%')
-            div.panel.panel-warning
-              div.panel-heading
-                h4.div.panel-title Register
-              div.panel-body
-                form(role='form', id='formRegister')
-                  div.form-group
-                    input.form-control(id='remail', type='email', placeholder='Email', required)
-                  button.btn.btn-default.confirmRegister(type='submit', id='registerSubmit',  data-loading-text="Checking Email..." ) Register               
-        tr
-          td(colspan='2') 
-              a(href="#",id='showLogin') Already a user? Login..
+              a(href="/login/register",id='showRegister') New user? Sign-up
 
-  
-  
   include inc/scripts
