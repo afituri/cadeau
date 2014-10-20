@@ -23,11 +23,10 @@ $(document).ready(function(){
           switch(result){
             case 'INACTIVE' :
               msg = 'This email is registered and needs to be activated resend activation';
-              break
+              break;
             case 'ACTIVE' :
               msg = 'This email is registered and the account is already activated please Login';
-              break
-
+              break;
           }
           $('#alertBlock').append('<div id ="emailExistAlert" class="alert alert-danger alert-dismissible" role="alert">'+
                                   '<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>'+

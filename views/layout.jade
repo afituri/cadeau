@@ -27,8 +27,22 @@ html
                 a(href='#') Main
               li
                 a(href='#') Contact Us
-              li.dropdown(id='menuLogin')
-                a.dropdown-toggle(href='/login', id='navLogin') Login / Register
+              if username
+                li.dropdown
+                  a.dropdown-toggle(href='#', data-toggle='dropdown') #{username}
+                    span.caret   
+                  ul.dropdown-menu(role='menu')
+                    li
+                      a(href='/user') 
+                        span.glyphicon.glyphicon-gift  My-Gifts 
+                        
+
+                    li
+                      a(href='/login/logout') 
+                        span.glyphicon.glyphicon-log-out  Logout
+              else
+                li.dropdown(id='menuLogin')
+                  a.dropdown-toggle(href='/login', id='navLogin') Login / Register
       block content
     div.footer
       div.container

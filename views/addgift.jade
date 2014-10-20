@@ -1,0 +1,166 @@
+extends layout
+block content
+  div.row
+    div.col-lg-6.col-lg-offset-3(id="alertBlock")
+    div.col-lg-6.col-lg-offset-3(id='registerForm')
+      div.panel.panel-default
+        div.panel-heading Add a new Gift
+        div.panel-body              
+          form(id="fileupload", action="/upload", method="POST", enctype="multipart/form-data")    
+            table.table
+              tr
+                td(width='35%')
+                  div.form-group
+                    label Country *
+                    select.form-control.input-sm(name='country',placeholder='Country',id='country', required)
+                    input(type='hidden',name='iso',id='iso',value='#{location.country}')
+                    input(type='hidden',name='iduser',id='iduser',value='#{iduser}')
+                td.usStates(id='usStates' width='15%')
+                  div.form-group
+                    label State *
+                    select.form-control.input-sm(name='state',placeholder='State',id='state')
+                    input(type='hidden',name='iso_state',id='iso_state',value='#{location.state}')
+                td(width='25%')
+                  div.form-group
+                    label City *
+                    select.form-control.input-sm(name='city',placeholder='City',id='city', required)
+                    input(type='hidden',name='iso_city',id='iso_city',value='#{location.city}')
+                td
+                  div.form-group
+                    label Phone #
+                    input.form-control.input-sm(type='text',name='phone',placeholder='Phone #', required)
+            table.table
+              tr
+                td(width='35%')
+                  div.form-group
+                    label Gift Title *
+                    input.form-control.input-sm(type='text',name='title',id='title',placeholder='title',required)
+                td(width='25%')
+                  div.form-group
+                    label Listing *
+                    select.form-control.input-sm(name='listing',placeholder='Listing',id='listing', required)
+                td
+                  div.form-group
+                    label Description
+                    textarea.form-control.input-sm(rows=2,name='desc',placeholder='Describe your gift here ..')
+              tr
+                td(colspan='3')
+                  div.row.fileupload-buttonbar
+                    div
+                      span.btn.btn-success.btn-sm.fileinput-button 
+                        i.glyphicon.glyphicon-plus
+                        span Add files...
+                        input(type="file", name="files[]", multiple)
+                      button.btn.btn-primary.btn-sm.start(type='submit') 
+                        i.glyphicon.glyphicon-upload
+                        span Start upload
+                      button.btn.btn-warning.btn-sm.cancel 
+                        i.glyphicon.glyphicon-ban-circle
+                        span Cancel upload
+                      button.btn.btn-danger.btn-sm.delete 
+                        i.glyphicon.glyphicon-trash
+                        span Delete
+                      input.toggle(type='checkbox')
+                      span.fileupload-process
+                    div.fileupload-progress.fade
+                      div.progress.progress-striped.active(role="progressbar", aria-valuemin="0", aria-valuemax="100")
+                      div.progress-extended &nbsp;
+                  table.table.table-striped(role='presentation')
+                    tbody.files 
+    
+  script(id="template-upload", type="text/x-tmpl")
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+    <td>
+    <span class="preview"></span>
+    </td>
+    <td>
+    <p class="name">{%=file.name%}</p>
+    <strong class="error text-danger"></strong>
+    </td>
+    <td>
+    <p class="size">Processing...</p>
+    <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+    </td>
+    <td>
+    {% if (!i && !o.options.autoUpload) { %}
+    <button class="btn btn-primary start" disabled>
+    <i class="glyphicon glyphicon-upload"></i>
+    <span>Start</span>
+    </button>
+    {% } %}
+    {% if (!i) { %}
+    <button class="btn btn-warning cancel">
+    <i class="glyphicon glyphicon-ban-circle"></i>
+    <span>Cancel</span>
+    </button>
+    {% } %}
+    </td>
+    </tr>
+    {% } %}
+  script(id="template-download", type="text/x-tmpl")
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+    <td>
+    <span class="preview">
+    {% if (file.thumbnailUrl) { %}
+    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+    {% } %}
+    </span>
+    </td>
+    <td>
+    <p class="name">
+    {% if (file.url) { %}
+    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+    {% } else { %}
+    <span>{%=file.name%}</span>
+    {% } %}
+    </p>
+    {% if (file.error) { %}
+    <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+    {% } %}
+    </td>
+    <td>
+    <span class="size">{%=o.formatFileSize(file.size)%}</span>
+    </td>
+    <td>
+    {% if (file.deleteUrl) { %}
+    <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+    <i class="glyphicon glyphicon-trash"></i>
+    <span>Delete</span>
+    </button>
+    <input type="checkbox" name="delete" value="1" class="toggle">
+    {% } else { %}
+    <button class="btn btn-warning cancel">
+    <i class="glyphicon glyphicon-ban-circle"></i>
+    <span>Cancel</span>
+    </button>
+    {% } %}
+    </td>
+    </tr>
+    {% } %}
+
+  script(type='text/javascript', src='/javascripts/jquery-1.11.1.min.js')
+  script(type='text/javascript', src='/javascripts/jquery-ui.min.js')
+  script(type='text/javascript', src='/javascripts/tmpl.min.js')
+  script(type='text/javascript', src='/javascripts/load-image.min.js')
+  script(type='text/javascript', src='/javascripts/canvas-to-blob.min.js')
+  script(type='text/javascript', src='/javascripts/bootstrap.min.js')
+  script(type='text/javascript', src='/javascripts/jquery.blueimp-gallery.min.js')
+  script(type='text/javascript', src='/javascripts/jquery.iframe-transport.js')
+  script(type='text/javascript', src='/javascripts/jquery.fileupload.js')
+  script(type='text/javascript', src='/javascripts/jquery.fileupload-process.js')
+  script(type='text/javascript', src='/javascripts/jquery.fileupload-image.js')
+  script(type='text/javascript', src='/javascripts/jquery.fileupload-validate.js')
+  script(type='text/javascript', src='/javascripts/jquery.fileupload-ui.js')
+  script(type='text/javascript', src='/javascripts/main.js')
+  script(type='text/javascript', src='/javascripts/addgift.js')
+  
+ 
+
+
+
+
+
+
+

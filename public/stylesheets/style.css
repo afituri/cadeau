@@ -64,3 +64,17 @@ background-color: #8c98d3;
 .navbar-default .navbar-brand {
 color: #FFF;
 }
+
+
+.btn-gift {
+  color: #fff;
+  background-color: #8c98d3;
+  border-color: #8c98d3;
+}
+
+table{
+    table-layout: fixed;
+}
+td{
+    word-wrap:break-word
+}

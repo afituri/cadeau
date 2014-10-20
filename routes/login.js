@@ -76,7 +76,6 @@ router.post('/register', function(req, res) {
     } else {
       res.send(result[0].status);
     }
-    
   });
 });
 
@@ -133,10 +132,19 @@ router.post('/activate', function(req, res) {
   });
 });
 
+//login 
 router.post('/', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
-  res.redirect('/');
+  findById(req.session.passport.user, function (err, user) {
+    req.session.username=user.username;
+    req.session.iduser=user.iduser;
+    res.redirect('/user');
+  });
 });
 
+router.get('/logout',ensureAuthenticated, function(req, res) {
+  req.session.destroy();
+  res.redirect('/');
+});
 function findById(id, fn) {
   userMgr.getUserById(id, function(user){
     if(user){

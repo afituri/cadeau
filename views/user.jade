@@ -1,0 +1,43 @@
+extends layout
+block content
+  div.col-lg-8.col-lg-offset-2
+    div.panel.panel-success
+      div.panel-heading
+        h3.panel-title 
+          span.glyphicon.glyphicon-gift  My-Gifts
+        div.btn-group.pull-right  
+          a.btn.btn-gift.btn-sm(href='/user/newGift', role='button') Add a Gift 
+            span.glyphicon.glyphicon-plus
+      div.panel-body
+        table.table
+          thead
+            tr
+              th Title
+              th listing
+              th City
+              th Date-Added
+              th Photo
+          tbody
+            tr
+              td iphone 5
+              td Electronics
+              td Tripoli
+              td 14-04-2014
+              td 
+                img.img-circle(style="width:50px;height:50px", src="/images/download.jpeg")
+            tr
+              td iphone 5
+              td Electronics
+              td Tripoli
+              td 14-04-2014
+              td 
+                img.img-circle(style="width:50px;height:50px", src="/images/download.jpeg")
+            tr
+              td iphone 5
+              td Electronics
+              td Tripoli
+              td 14-04-2014
+              td 
+                img.img-circle(style="width:50px;height:50px", src="/images/download.jpeg")
+  
+  include inc/scripts
